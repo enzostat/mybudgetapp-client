@@ -1,28 +1,40 @@
 import React from 'react'
+import Budget from './Budget'
+import {Redirect, Link} from 'react-router-dom'
 
-const Finance = props => {
-    return(
-        <div>
-            <h1>Your Finances at a Glance</h1>
+class Finance extends React.Component {
+    state = {
+        stuff: null
+    }
 
-            <hr />
+    onClick = () => {
+        return <Redirect to='/budget' />
+    }
 
-            <h3>Salary:</h3>
-            <p>You are unemployed</p>
+    render (){ 
+        return(
+            <div>
+                <h1>Your Finances at a Glance</h1>
 
-            <h3>Monthly Expenses:</h3>
-            <p>Placeholder</p>
+                <hr />
 
-            <h3>Monthly Savings:</h3>
-            <p>Placeholder</p>
+                <h3>Salary:</h3>
+                <p>You are unemployed</p>
 
-            <button>Update Your Finances</button>
+                <h3>Monthly Expenses:</h3>
+                <p>Placeholder</p>
 
-            <button>This Month's Finances</button>
+                <h3>Monthly Savings:</h3>
+                <p>Placeholder</p>
 
-            
-        </div>
-    )
+                <button>Update Your Finances</button>
+
+                <Link to="/budget"><button>This Month's Finances</button></Link>
+
+                
+            </div>
+        )
+    }
 }
 
 export default Finance

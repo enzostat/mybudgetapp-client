@@ -5,6 +5,7 @@ import Profile from './Profile'
 import Login from './Login'
 import Signup from './Signup'
 import Finance from '../Pages/Finances'
+import Budget from '../Pages/Budget'
 
 const Content = props => {
     return(
@@ -20,6 +21,7 @@ const Content = props => {
                 () => <Login user={props.user} updateUser={props.updateUser} />
                 } />
             <Route path="/finance" component={Finance} />
+            <Route path="/budget" component={Budget} />
         </div>
     )
 }
