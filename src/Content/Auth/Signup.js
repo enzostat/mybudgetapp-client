@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
-import SERVER_URL from '../../Constants'
+import SERVER_URL from '../../constants'
 
 class Signup extends React.Component {
 
