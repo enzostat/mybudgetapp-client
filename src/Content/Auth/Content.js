@@ -23,7 +23,9 @@ const Content = props => {
                 } />
             <Route path="/finance" component={Finance} />
             <Route path="/budget" component={Budget} />
-            <Route path="/startbudget" component={StartBudget} />
+            <Route path="/startbudget" render={
+                () => <StartBudget user={props.user} updateUser={props.updateUser} />
+            } />
         </div>
     )
 }

@@ -4,19 +4,23 @@ import axios from 'axios'
 import SERVER_URL from '../../constants'
 
 class StartBudget extends React.Component {
-    state = {
-        salary: null,
-        isSalaried: true,
-        freelance: null,
-        isFreelance: false,
-        rent: 0,
-        mortgage: 0,
-        isMortgage: false,
-        isRent: true,
-        savings: 0,
-        monthlies: [],
-        name: '',
-        amount: 0
+    
+    constructor(props){
+        super(props)
+        this.state = {
+            salary: null,
+            isSalaried: true,
+            freelance: null,
+            isFreelance: false,
+            rent: 0,
+            mortgage: 0,
+            isMortgage: false,
+            isRent: true,
+            savings: 0,
+            monthlies: [],
+            name: '',
+            amount: 0
+        }
     }
 
     handleChange = e => {
@@ -55,10 +59,14 @@ class StartBudget extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        axios.put(`${SERVER_URL}/budget`, this.state)
+        axios.post(`${SERVER_URL}/budget/${this.props.user._id}`, this.state)
         .then(response => {
             console.log('Success!', response)
 
+        })
+        .catch(err => {
+            console.log(err)
+            
         })
 
     }
