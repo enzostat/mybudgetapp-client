@@ -1,5 +1,7 @@
 import React from 'react'
 import Monthlies from './Monthlies'
+import axios from 'axios'
+import SERVER_URL from '../../constants'
 
 class StartBudget extends React.Component {
     state = {
@@ -53,6 +55,12 @@ class StartBudget extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault()
+        axios.put(`${SERVER_URL}/budget`, this.state)
+        .then(response => {
+            console.log('Success!', response)
+
+        })
+
     }
 
 
