@@ -6,6 +6,7 @@ import Login from './Login'
 import Signup from './Signup'
 import Finance from '../Pages/Finances'
 import Budget from '../Pages/Budget'
+import StartBudget from '../Pages/StartBudget'
 
 const Content = props => {
     return(
@@ -22,6 +23,7 @@ const Content = props => {
                 } />
             <Route path="/finance" component={Finance} />
             <Route path="/budget" component={Budget} />
+            <Route path="/startbudget" component={StartBudget} />
         </div>
     )
 }

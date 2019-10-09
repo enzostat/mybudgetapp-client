@@ -20,20 +20,20 @@ class Budget extends React.Component {
             name: this.state.name,
             amount: this.state.amount
         }
-        if (this.state.category == 'utility') {
+        if (this.state.category === 'utility') {
             let temp = []
             temp = [...this.state.utility]
             temp.push(object)
             this.setState({utility: temp})
             // this.setState({[this.state.category]: this.state.})
-        } else if (this.state.category == 'bill') {
+        } else if (this.state.category === 'bill') {
             let temp = []
             temp = [...this.state.bill]
             temp.push(object)
             this.setState({bill: temp})
-        } else if (this.state.category == 'rent') {
+        } else if (this.state.category === 'rent') {
             this.setState({rent: this.state.amount})
-        } else if (this.state.category == 'mortgage') {
+        } else if (this.state.category === 'mortgage') {
             this.setState({mortgage: this.state.amount})
         }
     }
@@ -49,16 +49,26 @@ class Budget extends React.Component {
     }
 
     render(){
-        let rent = ''
-        // if (this.state.rent == null) {
-        //     return rent
-        // } else {
-        //    return rent = this.state.rent
-        // }
+        let rents = <div></div>
+        let utilities = <div></div>
+        if (this.state.rent == null) {
+            rents = <div>You have not entered a rent</div>
+        } else {
+            rents = <div>{this.state.rent}</div>
+        }
 
+        if (this.state.utility.length === 0) {
+            utilities = <div>You have not added any utilities</div>
+        } else {
+            this.state.utility.forEach(u => {
+                
+            })
+        }
 
         return (
             <div>
+                <h3>Rent:</h3>
+                {rents}
                 <form onSubmit={this.handleSubmit}>
                     <label>Name of Charge</label>
                     <input name="name" onChange={this.storeInput} />
