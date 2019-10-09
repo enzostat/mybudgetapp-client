@@ -2,6 +2,7 @@ import React from 'react'
 import Monthlies from './Monthlies'
 import axios from 'axios'
 import SERVER_URL from '../../constants'
+import Categories from './Categories'
 
 class StartBudget extends React.Component {
     
@@ -19,7 +20,9 @@ class StartBudget extends React.Component {
             savings: 0,
             monthlies: [],
             name: '',
-            amount: 0
+            amount: 0,
+            category: 'housing',
+            categories: ['housing', 'transportation', 'groceries', 'utilities', 'clothing', 'medical', 'insurance', 'household items', 'personal', 'debt', 'retirement', 'education', 'savings', 'gifts', 'entertainment', 'other']
         }
     }
 
@@ -71,7 +74,10 @@ class StartBudget extends React.Component {
 
     }
 
-
+    handleSelect = e => {
+        console.log(e.target.value)
+        this.setState({category: e.target.value})
+    }
 
     render() {
         let income = <div></div>
@@ -81,6 +87,9 @@ class StartBudget extends React.Component {
             key={i}
             monthly={m}
             />
+        })
+        let categories = this.state.categories.map((c,i) => {
+            return <Categories category={c} />
         })
         if (this.state.isSalaried) {
             income = (<><label>Salary</label>
@@ -127,7 +136,10 @@ class StartBudget extends React.Component {
                     <label>Amount: </label>
                     <input name="amount" value={this.state.amount} onChange={this.handleChange} />
                     <br />
-                    <button onClick={this.addInput}>Add!</button>
+                    <select onChange={this.handleSelect}>
+                        {categories}
+                    </select>
+                    <button onClick={this.addInput}>➕</button>
                     <br />
                     <br />
                     <br />

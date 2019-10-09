@@ -21,8 +21,12 @@ const Content = props => {
             <Route path="/login" render={
                 () => <Login user={props.user} updateUser={props.updateUser} />
                 } />
-            <Route path="/finance" component={Finance} />
-            <Route path="/budget" component={Budget} />
+            <Route path="/finance" render={
+                () => <Finance user={props.user} budget={props.budget} />
+            } />
+            <Route path="/budget" render={
+                ()=> <Budget user={props.user} budget={props.budget} />
+            } />
             <Route path="/startbudget" render={
                 () => <StartBudget user={props.user} updateUser={props.updateUser} />
             } />

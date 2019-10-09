@@ -1,4 +1,7 @@
 import React from 'react'
+import axios from 'axios'
+import SERVER_URL from '../../constants'
+import Categories from './Categories'
 
 
 class Budget extends React.Component {
@@ -10,8 +13,17 @@ class Budget extends React.Component {
         utility: [],
         name: null,
         amount: null,
-        category: "utility"
+        category: "housing",
+        resultObj: {},
+        categories: ['housing', 'transportation', 'groceries', 'utilities', 'clothing', 'medical', 'insurance', 'household items', 'personal', 'debt', 'retirement', 'education', 'savings', 'gifts', 'entertainment', 'other']
     }
+
+    // componentDidMount() {
+    //     axios.get(`${SERVER_URL}/budget/${this.props.user._id}`)
+    //     .then(result => {
+    //         this.setState({resultObj: result})
+    //     })
+    // }
     
     handleSubmit = (e) => {
         e.preventDefault()
@@ -49,6 +61,9 @@ class Budget extends React.Component {
     }
 
     render(){
+        let categories = this.state.categories.map((c,i) => {
+            return <Categories category={c} />
+        })
         let rents = <div></div>
         let utilities = <div></div>
         if (this.state.rent == null) {
@@ -76,10 +91,11 @@ class Budget extends React.Component {
                     <input name="amount" onChange={this.storeInput} />
                     <label>Category:</label>
                     <select onChange={this.handleSelect}>
-                        <option value="utility">Utility</option>
+                        {categories}
+                        {/* <option value="utility">Utility</option>
                         <option value="rent">Rent</option>
                         <option value="mortgage">Mortgage</option>
-                        <option value="bill">Bill</option>
+                        <option value="bill">Bill</option> */}
                     </select>
                     <input type="submit" value="Add!" />
                 </form>

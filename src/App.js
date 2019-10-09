@@ -10,12 +10,20 @@ import axios from 'axios'
 class App extends React.Component {
 
   state = {
-    user: null
+    user: null,
+    budget: null
   }
 
   componentDidMount () {
     //Go look for a token
     this.getUser()
+
+    if (this.state.user != null) {
+      axios.get(`${SERVER_URL}/budget/${this.state.user._id}`)
+      .then(result => {
+        this.setState({budget: result})
+      })
+    }
   }
 
   getUser = () => {
@@ -47,7 +55,7 @@ class App extends React.Component {
       <div className="App">
         <Nav user={this.state.user} updateUser={this.getUser} />
         <Header />
-        <Content updateUser={this.getUser} user={this.state.user} />
+        <Content updateUser={this.getUser} user={this.state.user} budget={this.state.budget} />
         
       </div>
       </Router>
