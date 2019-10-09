@@ -1,4 +1,5 @@
 import React from 'react'
+import Monthlies from './Monthlies'
 
 class StartBudget extends React.Component {
     state = {
@@ -11,7 +12,9 @@ class StartBudget extends React.Component {
         isMortgage: false,
         isRent: true,
         savings: 0,
-        monthlies: []
+        monthlies: [],
+        name: '',
+        amount: 0
     }
 
     handleChange = e => {
@@ -40,12 +43,16 @@ class StartBudget extends React.Component {
         console.log(this.state.monthlies)
         let temp = []
         let object = {
-            name: e.target.name,
-            amount: e.target.amount
+            name: this.state.name,
+            amount: this.state.amount
         }
         temp = [...this.state.monthlies]
         temp.push(object)
-        this.setState({monthlies: temp})
+        this.setState({monthlies: temp, name: '', amount: 0})
+    }
+
+    handleSubmit = e => {
+        e.preventDefault()
     }
 
 
@@ -53,6 +60,12 @@ class StartBudget extends React.Component {
     render() {
         let income = <div></div>
         let housing = <div></div>
+        let monthlies = this.state.monthlies.map((m,i) => {
+            return <Monthlies 
+            key={i}
+            monthly={m}
+            />
+        })
         if (this.state.isSalaried) {
             income = (<><label>Salary</label>
             <input name="salary" onChange={this.handleChange} /></>)
@@ -69,9 +82,10 @@ class StartBudget extends React.Component {
                 <input name="mortgage" onChange={this.handleChange} /></>)
         }
 
+
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <input type="radio" name="salOrFree" value="Salaried" onChange={this.changeIncome} />Salaried
                     <input type="radio" name="salOrFree" value="Freelance" onChange={this.changeIncome} />Freelance
                     <br />
@@ -87,9 +101,20 @@ class StartBudget extends React.Component {
                     <br/>
                     <label>Other Monthly Expenses</label>
                     <br />
-                    <input name="name" placeholder="name of monthly expense" />
-                    <input name="amount" placeholder="amount" />
-                    <button onClick={this.addInput}>+</button>
+                    <ul>
+                        {monthlies}
+                    </ul>
+                    <br/>
+                    <label>Name of Monthly Expense: </label>
+                    <input name="name" value={this.state.name} onChange={this.handleChange} />
+                    <br />
+                    <label>Amount: </label>
+                    <input name="amount" value={this.state.amount} onChange={this.handleChange} />
+                    <br />
+                    <button onClick={this.addInput}>Add!</button>
+                    <br />
+                    <br />
+                    <br />
                     <br />
                     <input type="submit" />
                 </form>
