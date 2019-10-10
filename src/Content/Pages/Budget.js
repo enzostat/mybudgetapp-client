@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import SERVER_URL from '../../constants'
 import Categories from './Categories'
+import Incidentals from './Incidentals'
 
 
 class Budget extends React.Component {
@@ -11,8 +12,9 @@ class Budget extends React.Component {
         rent: null,
         mortgage: null,
         utility: [],
-        name: null,
-        amount: null,
+        name: '',
+        amount: 0,
+        incidentals: [],
         category: "housing",
         resultObj: {},
         categories: ['housing', 'transportation', 'groceries', 'utilities', 'clothing', 'medical', 'insurance', 'household items', 'personal', 'debt', 'retirement', 'education', 'savings', 'gifts', 'entertainment', 'other']
@@ -28,26 +30,10 @@ class Budget extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
         console.log('clicked')
-        let object = {
-            name: this.state.name,
-            amount: this.state.amount
-        }
-        if (this.state.category === 'utility') {
-            let temp = []
-            temp = [...this.state.utility]
-            temp.push(object)
-            this.setState({utility: temp})
-            // this.setState({[this.state.category]: this.state.})
-        } else if (this.state.category === 'bill') {
-            let temp = []
-            temp = [...this.state.bill]
-            temp.push(object)
-            this.setState({bill: temp})
-        } else if (this.state.category === 'rent') {
-            this.setState({rent: this.state.amount})
-        } else if (this.state.category === 'mortgage') {
-            this.setState({mortgage: this.state.amount})
-        }
+        axios.put(`${SERVER_URL}/budget/${this.props.user._id}`, this.state.incidentals)
+        .then(response => {
+            this.setState({resultObj: response})
+        })
     }
 
     storeInput = e => {
@@ -58,6 +44,18 @@ class Budget extends React.Component {
     handleSelect = e => {
         console.log(e.target.value)
         this.setState({category: e.target.value})
+    }
+
+    addToIncidentals = e => {
+        let tempArr = [...this.state.incidentals]
+        let object = {
+            name: this.state.name,
+            amount: this.state.amount,
+            category: this.state.category
+        }
+        tempArr.push(object)
+        this.setState({incidentals: [...tempArr]})
+        this.setState({category: "housing", name: '', amount: 0})
     }
 
     render(){
@@ -80,23 +78,28 @@ class Budget extends React.Component {
             })
         }
 
+        let incidentals = this.state.incidentals.map((incid,i) => {
+            return <Incidentals incid={incid} />
+        })
+
         return (
             <div>
-                <h3>Rent:</h3>
-                {rents}
+                {/* <h3>Rent:</h3>
+                {rents} */}
+                <ul>
+                    {incidentals}
+                </ul>
                 <form onSubmit={this.handleSubmit}>
                     <label>Name of Charge</label>
-                    <input name="name" onChange={this.storeInput} />
+                    <input name="name" value={this.state.name} onChange={this.storeInput} />
                     <label>Amount of Charge</label>
-                    <input name="amount" onChange={this.storeInput} />
+                    <input name="amount" value={this.state.amount} onChange={this.storeInput} />
                     <label>Category:</label>
-                    <select onChange={this.handleSelect}>
+                    <select value={this.state.category} onChange={this.handleSelect}>
                         {categories}
-                        {/* <option value="utility">Utility</option>
-                        <option value="rent">Rent</option>
-                        <option value="mortgage">Mortgage</option>
-                        <option value="bill">Bill</option> */}
+                        
                     </select>
+                    <button onClick={addToIncidentals}>➕</button>
                     <input type="submit" value="Add!" />
                 </form>
             </div>

@@ -139,6 +139,7 @@ class StartBudget extends React.Component {
                     <select onChange={this.handleSelect}>
                         {categories}
                     </select>
+                    <br/>
                     <button onClick={this.addInput}>➕</button>
                     <br />
                     <br />
