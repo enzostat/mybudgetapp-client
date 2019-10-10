@@ -3,21 +3,19 @@ import axios from 'axios'
 import SERVER_URL from '../../constants'
 import Categories from './Categories'
 import Incidentals from './Incidentals'
+import {Redirect} from 'react-router-dom'
 
 
 class Budget extends React.Component {
 
     state = {
-        bill: [],
-        rent: null,
-        mortgage: null,
-        utility: [],
         name: '',
+        redirect: false,
         amount: 0,
         incidentals: [],
         category: "housing",
         resultObj: {},
-        categories: ['housing', 'transportation', 'groceries', 'utilities', 'clothing', 'medical', 'insurance', 'household items', 'personal', 'debt', 'retirement', 'education', 'savings', 'gifts', 'entertainment', 'other']
+        categories: ['groceries', 'bills',  'personal', 'debt/savings', 'entertainment', 'other']
     }
 
     // componentDidMount() {
@@ -32,7 +30,7 @@ class Budget extends React.Component {
         console.log('clicked')
         axios.put(`${SERVER_URL}/budget/${this.props.user._id}`, this.state.incidentals)
         .then(response => {
-            this.setState({resultObj: response})
+            this.setState({resultObj: response, redirect: true, incidentals: []})
         })
     }
 
@@ -59,24 +57,12 @@ class Budget extends React.Component {
     }
 
     render(){
+        if (this.state.redirect) {
+            return <Redirect to="/finance" />
+        }
         let categories = this.state.categories.map((c,i) => {
             return <Categories category={c} />
         })
-        let rents = <div></div>
-        let utilities = <div></div>
-        if (this.state.rent == null) {
-            rents = <div>You have not entered a rent</div>
-        } else {
-            rents = <div>{this.state.rent}</div>
-        }
-
-        if (this.state.utility.length === 0) {
-            utilities = <div>You have not added any utilities</div>
-        } else {
-            this.state.utility.forEach(u => {
-                
-            })
-        }
 
         let incidentals = this.state.incidentals.map((incid,i) => {
             return <Incidentals incid={incid} />
@@ -99,8 +85,9 @@ class Budget extends React.Component {
                         {categories}
                         
                     </select>
-                    <button onClick={addToIncidentals}>➕</button>
-                    <input type="submit" value="Add!" />
+                    <button type="button" onClick={this.addToIncidentals}>➕</button>
+                    <br />
+                    <input type="submit" value="Update Incidentals" />
                 </form>
             </div>
         )

@@ -11,13 +11,17 @@ class App extends React.Component {
 
   state = {
     user: null,
-    budget: null
+    budget: {}
   }
 
   componentDidMount () {
     //Go look for a token
     this.getUser()
+    this.getBudget()
 
+  }
+
+  getBudget = () => {
     if (this.state.user != null) {
       axios.get(`${SERVER_URL}/budget/${this.state.user._id}`)
       .then(result => {

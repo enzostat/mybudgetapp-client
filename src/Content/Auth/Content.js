@@ -22,10 +22,10 @@ const Content = props => {
                 () => <Login user={props.user} updateUser={props.updateUser} />
                 } />
             <Route path="/finance" render={
-                () => <Finance user={props.user} budget={props.budget} />
+                () => <Finance user={props.user} budget={props.budget} updateUser={props.updateUser} />
             } />
             <Route path="/budget" render={
-                ()=> <Budget user={props.user} budget={props.budget} />
+                ()=> <Budget user={props.user} budget={props.budget} updateUser={props.updateUser} />
             } />
             <Route path="/startbudget" render={
                 () => <StartBudget user={props.user} updateUser={props.updateUser} />

@@ -22,7 +22,7 @@ class StartBudget extends React.Component {
             name: '',
             amount: 0,
             category: 'housing',
-            categories: ['housing', 'transportation', 'groceries', 'utilities', 'clothing', 'medical', 'insurance', 'household items', 'personal', 'debt', 'retirement', 'education', 'savings', 'gifts', 'entertainment', 'other']
+            categories: ['groceries', 'bills',  'personal', 'debt/savings', 'entertainment', 'other']
         }
     }
 
