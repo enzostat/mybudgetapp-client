@@ -135,7 +135,7 @@ class StartBudget extends React.Component {
                     <input name="name" value={this.state.name} onChange={this.handleChange} />
                     <br />
                     <label>Amount: </label>
-                    <input name="amount" value={this.state.amount} onChange={this.handleChange} />
+                    <input name="amount" type="number" value={this.state.amount} onChange={this.handleChange} />
                     <br />
                     <select onChange={this.handleSelect}>
                         {categories}

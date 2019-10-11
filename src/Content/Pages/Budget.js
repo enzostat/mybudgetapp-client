@@ -79,7 +79,7 @@ class Budget extends React.Component {
                     <label>Name of Charge</label>
                     <input name="name" value={this.state.name} onChange={this.storeInput} />
                     <label>Amount of Charge</label>
-                    <input name="amount" value={this.state.amount} onChange={this.storeInput} />
+                    <input name="amount" type="number" value={this.state.amount} onChange={this.storeInput} />
                     <label>Category:</label>
                     <select value={this.state.category} onChange={this.handleSelect}>
                         {categories}
