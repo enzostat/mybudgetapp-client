@@ -7,6 +7,7 @@ import Signup from './Signup'
 import Finance from '../Pages/Finances'
 import Budget from '../Pages/Budget'
 import StartBudget from '../Pages/StartBudget'
+import Update from '../Pages/Update'
 
 const Content = props => {
     return(
@@ -29,6 +30,9 @@ const Content = props => {
             } />
             <Route path="/startbudget" render={
                 () => <StartBudget user={props.user} updateUser={props.updateUser} />
+            } />
+            <Route path="/update" render={
+                ()=> <Update user={props.user} budget={props.budget} updateUser={props.updateUser} />
             } />
         </div>
     )

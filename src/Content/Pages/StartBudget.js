@@ -53,7 +53,8 @@ class StartBudget extends React.Component {
         let temp = []
         let object = {
             name: this.state.name,
-            amount: this.state.amount
+            amount: this.state.amount,
+            category: this.state.category
         }
         temp = [...this.state.monthlies]
         temp.push(object)

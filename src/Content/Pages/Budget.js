@@ -13,7 +13,7 @@ class Budget extends React.Component {
         redirect: false,
         amount: 0,
         incidentals: [],
-        category: "housing",
+        category: "groceries",
         resultObj: {},
         categories: ['groceries', 'bills',  'personal', 'debt/savings', 'entertainment', 'other']
     }

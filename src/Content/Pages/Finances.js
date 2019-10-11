@@ -13,12 +13,12 @@ class Finance extends React.Component {
             update: false,
             total: 0,
             categories: ['groceries', 'bills',  'personal', 'debt/savings', 'entertainment', 'other'],
-            groceries: [],
-            bills: [],
-            personal: [],
-            debt: [],
-            entertainment: [],
-            other: []
+            groceries: 0,
+            bills: 0,
+            personal: 0,
+            debt: 0,
+            entertainment: 0,
+            other: 0
         }
     }
 
@@ -98,7 +98,7 @@ class Finance extends React.Component {
                 <h3>Monthly Savings:</h3>
                 <p>{this.state.stuff.savings}</p>
 
-                <button>Update Your Finances</button>
+                <Link to="/update"><button>Update Your Finances</button></Link>
 
                 <Link to="/budget"><button>This Month's Finances</button></Link>
 
