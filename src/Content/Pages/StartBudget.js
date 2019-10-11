@@ -21,7 +21,7 @@ class StartBudget extends React.Component {
             monthlies: [],
             name: '',
             amount: 0,
-            category: 'housing',
+            category: 'groceries',
             categories: ['groceries', 'bills',  'personal', 'debt/savings', 'entertainment', 'other']
         }
     }
