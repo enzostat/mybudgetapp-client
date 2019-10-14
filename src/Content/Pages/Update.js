@@ -102,7 +102,7 @@ class Update extends React.Component {
                         {categories}
                     </select>
                     <button type="button" onClick={this.addObj}>➕</button>
-                    <input type="submit" />
+                    <input className="button" type="submit" />
                 </form>
             </div>
         )

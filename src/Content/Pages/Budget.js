@@ -90,7 +90,7 @@ class Budget extends React.Component {
                     </select>
                     <button type="button" onClick={this.addToIncidentals}>➕</button>
                     <br />
-                    <input type="submit" value="Update Incidentals" />
+                    <input className="button" type="submit" value="Update Incidentals" />
                 </form>
             </div>
         )

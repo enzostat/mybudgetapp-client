@@ -34,6 +34,15 @@ button {
   border-radius: 4px;
 }
 
+.button {
+  margin: 40px;
+  padding: 10px;
+  background-color: lightgreen;
+  color: hotpink;
+  border: 2px solid hotpink;
+  border-radius: 4px;
+}
+
 nav {
   background-color: #364167;
   padding: 20px;
