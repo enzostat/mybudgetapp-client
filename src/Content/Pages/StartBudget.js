@@ -3,6 +3,7 @@ import Monthlies from './Monthlies'
 import axios from 'axios'
 import SERVER_URL from '../../constants'
 import Categories from './Categories'
+import {Redirect} from 'react-router-dom'
 
 class StartBudget extends React.Component {
     
@@ -19,6 +20,7 @@ class StartBudget extends React.Component {
             isRent: true,
             savings: 0,
             monthlies: [],
+            submitted: false,
             name: '',
             amount: 0,
             category: 'groceries',
@@ -69,6 +71,7 @@ class StartBudget extends React.Component {
           })
         .then(response => {
             console.log('Success!', response)
+            this.setState({submitted: true})
 
         })
         .catch(err => {
@@ -84,6 +87,7 @@ class StartBudget extends React.Component {
     }
 
     render() {
+
         let income = <div></div>
         let housing = <div></div>
         let monthlies = this.state.monthlies.map((m,i) => {
@@ -109,6 +113,9 @@ class StartBudget extends React.Component {
         } else {
             housing = (<><label>Mortgage:</label>
                 <input name="mortgage" onChange={this.handleChange} /></>)
+        }
+        if (this.state.submitted) {
+            return <Redirect to="/finance" />
         }
 
 
