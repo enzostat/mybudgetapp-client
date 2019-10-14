@@ -74,7 +74,7 @@ class Finance extends React.Component {
         let bills = this.state.stuff.monthlies.filter(incidental => incidental.category=='bills')
         let totalbills = bills.reduce((accumulator,bill) => {return accumulator +bill.amount},0)
         totalbills += totalincidentalbills
-        totalbills += this.state.stuff.rent
+        // totalbills += this.state.stuff.rent
 
         let incidentalpersonal = this.state.stuff.incidentals.filter(incidental => incidental.category=='personal')
         let totalincidentalpersonal = incidentalpersonal.reduce((accumulator, personal) => {return accumulator + personal.amount},0)
@@ -87,7 +87,7 @@ class Finance extends React.Component {
         let debt = this.state.stuff.monthlies.filter(incidental => incidental.category=='debt/savings')
         let totaldebt = debt.reduce((accumulator,debt) => {return accumulator +debt.amount},0)
         totaldebt += totalincidentaldebt
-        totaldebt += this.state.stuff.savings
+        // totaldebt += this.state.stuff.savings
 
         let incidentalentertainment = this.state.stuff.incidentals.filter(incidental => incidental.category=='entertainment')
         let totalincidentalentertainment = incidentalentertainment.reduce((accumulator, entertainment) => {return accumulator + entertainment.amount},0)
