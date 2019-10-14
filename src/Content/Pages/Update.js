@@ -24,8 +24,11 @@ class Update extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault()
+        let token = localStorage.getItem('mernToken')
         console.log('clicked')
-        axios.put(`${SERVER_URL}/budget/update/${this.props.user._id}`, this.state)
+        axios.put(`${SERVER_URL}/budget/update/${this.props.user._id}`, this.state, {
+            headers: {'Authorization': `Bearer ${token}`}
+          })
         .then(response => {
             console.log('success', response)
             this.setState({redirect: true})

@@ -28,7 +28,10 @@ class Budget extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
         console.log('clicked')
-        axios.put(`${SERVER_URL}/budget/${this.props.user._id}`, this.state.incidentals)
+        let token = localStorage.getItem('mernToken')
+        axios.put(`${SERVER_URL}/budget/${this.props.user._id}`, this.state.incidentals, {
+            headers: {'Authorization': `Bearer ${token}`}
+          })
         .then(response => {
             this.setState({resultObj: response, redirect: true, incidentals: []})
         })

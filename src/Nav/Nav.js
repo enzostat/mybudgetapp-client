@@ -17,11 +17,14 @@ class Nav extends React.Component {
         if (this.props.user) {
             links = (
                 <span>
-                <li>
+                {/* <li>
                     <Link to="/profile">Profile</Link>
-                </li>
+                </li> */}
                 <li>
                 <a href="/" onClick={this.handleLogout}>Logout</a>
+                </li>
+                <li>
+                    <Link to="/finance">Finances</Link>
                 </li>
                 </span>
                 
@@ -44,9 +47,7 @@ class Nav extends React.Component {
                     <li>
                     <Link to="/">Home</Link>
                     </li>
-                    <li>
-                    <Link to="/finance">Finances</Link>
-                    </li>
+                    
                     {links}
                 </ul>
             </nav>

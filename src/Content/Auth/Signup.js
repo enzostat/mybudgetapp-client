@@ -40,7 +40,7 @@ class Signup extends React.Component {
 
     render(){ 
         if(this.props.user) {
-            return <Redirect to='/profile' />
+            return <Redirect to='/startbudget' />
         }
         return (
             <div>

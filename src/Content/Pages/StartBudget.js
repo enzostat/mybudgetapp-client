@@ -63,7 +63,10 @@ class StartBudget extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        axios.post(`${SERVER_URL}/budget/${this.props.user._id}`, this.state)
+        let token = localStorage.getItem('mernToken')
+        axios.post(`${SERVER_URL}/budget/${this.props.user._id}`, this.state, {
+            headers: {'Authorization': `Bearer ${token}`}
+          })
         .then(response => {
             console.log('Success!', response)
 

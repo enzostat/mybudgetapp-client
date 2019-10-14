@@ -24,7 +24,10 @@ class Finance extends React.Component {
 
     componentDidMount() {
         console.log('getting the stuff')
-        axios.get(`${SERVER_URL}/budget/${this.props.user._id}`)
+        let token = localStorage.getItem('mernToken')
+        axios.get(`${SERVER_URL}/budget/${this.props.user._id}`, {
+            headers: {'Authorization': `Bearer ${token}`}
+          })
         .then(response => {
             console.log('got the stuff')
             this.setState({stuff: response.data.finance})
