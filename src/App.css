@@ -20,14 +20,23 @@
   background-image: url('/money-2724235.jpg');
   background-size: cover;
   height: 100vh;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   /* width: auto; */
 }
 
+button {
+  margin: 40px;
+  padding: 10px;
+  background-color: lightgreen;
+  color: hotpink;
+  border: 2px solid hotpink;
+  border-radius: 4px;
+}
+
 nav {
   background-color: lightslategray;
-  padding: 10px;
+  padding: 20px;
 }
 
 nav ul {

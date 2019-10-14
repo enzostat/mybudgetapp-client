@@ -134,7 +134,9 @@ class Finance extends React.Component {
 
                 <Link to="/update"><button>Update Your Finances</button></Link>
 
-                <Link to="/budget"><button>This Month's Finances</button></Link>
+                <Link to="/budget"><button>Update Incidentals</button></Link>
+
+                {/* <Link to="/showexpenses"><button>See monthly and incidental expenses</button></Link> */}
 
                 
             </div>
