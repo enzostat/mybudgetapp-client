@@ -9,7 +9,10 @@ class ShowExpenses extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            stuff: []
+            stuff: {
+                monthelies: [],
+                incidentals: []
+            }
         }
     }
 
