@@ -107,7 +107,7 @@ class Finance extends React.Component {
 
     render (){ 
 
-
+        let salary = (this.state.stuff.salary/13)
 
         return(
             <div>
@@ -126,7 +126,8 @@ class Finance extends React.Component {
                 <hr />
 
                 <h3>Monthly Income:</h3>
-                <p>${this.state.stuff.salary/13}</p>
+                {/* <p>${this.state.stuff.salary/13}</p> */}
+                <p>{salary.toFixed(2)}</p>
 
                 <h3>Monthly Expenses:</h3>
                 <p>{this.state.total}</p>
